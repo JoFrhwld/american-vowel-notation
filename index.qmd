@@ -1,0 +1,271 @@
+---
+title: "American English Vowel Notation"
+author: 
+  - name: Josef Fruehwald
+    url: https://jofrhwld.github.io/
+date: 2023-05-19
+prefer-html: true
+format: 
+  html: default
+  pdf: 
+    include-in-header: "tipa.tex"
+    output-file: "lmh-american-english-vowel-notation.pdf"
+knitr: 
+  opts_chunk: 
+    message: false
+    warning: false
+    echo: false
+---
+
+```{r}
+library(tidyverse)
+library(gt)
+```
+
+## Basic Vowels
+
+```{r}
+#| label: tbl-short
+#| tbl-cap: "Short Vowel Notation"
+tribble(
+  ~backness, ~`Wells Lexical Set`, ~`Labov-Trager`, ~`IPA-like`, ~`ARPABET`, ~`FAVE plt_vclass`,
+  "front", "Kit", "i", "ɪ", "IH", "i",
+  "front", "Dress", "e", "ɛ", "EH", "e",
+  "front", "Trap", "æ", "æ", "AE", "ae",
+  "back", "Foot", "u", "ʊ", "UH", "u",
+  "back", "Strut", "ʌ", "ʌ", "AH1", "uh",
+  "back", "Lot", "o", "ɑ", "AA", "o",
+  "central", "commA", "--", "ə", "AH0", "@"
+) |> 
+  group_by(backness) |> 
+  gt() |> 
+  tab_footnote(
+    footnote = "Arpabet only distinguishes between <ə> and <ʌ> with stress marking",
+    locations = cells_body(columns = "ARPABET", rows = c(5, 7))
+  ) |> 
+  tab_style(
+    style = cell_text(font = "monospace"),
+    locations = cells_body(columns = "ARPABET")
+  ) |> 
+  tab_style(
+    style = cell_text(style = "italic"),
+    locations = cells_row_groups()
+  ) 
+```
+
+```{r}
+#| label: tbl-frontglide
+#| tbl-cap: "Front Upgliding Vowel Notation"
+tribble(
+  ~backness, ~`Wells Lexical Set`, ~`Labov-Trager`, ~`IPA-like`, ~`ARPABET`, ~`FAVE plt_vclass`,
+  "front", "Fleece", "iy", "iː", "IY", "iy",
+  "front", "Face", "ey", "eɪ", "EY", "ey",
+  "back", "Choice", "oy", "ɔɪ", "OY", "oy",
+  "back", "Price", "ay", "ɑɪ", "AY", "ay"
+) |> 
+  group_by(backness) |> 
+  gt() |> 
+  tab_style(
+    style = cell_text(font = "monospace"),
+    locations = cells_body(columns = "ARPABET")
+  ) |> 
+  tab_style(
+    style = cell_text(style = "italic"),
+    locations = cells_row_groups()
+  )
+```
+
+```{r}
+#| label: tbl-backup
+#| tbl-cap: "Back Upgliding Vowel Notation"
+tribble(
+  ~backness, ~`Wells Lexical Set`, ~`Labov-Trager`, ~`IPA-like`, ~`ARPABET`, ~`FAVE plt_vclass`,
+  "front", "--", "iw", "juː", "UW", "--",
+  "front", "Mouth", "aw", "aʊ", "AW", "aw",
+  "back", "Goose", "uw", "uː", "UW", "uw",
+  "back", "Goat", "ow", "oʊ", "OW", "ow"
+) |> 
+  group_by(backness) |> 
+  gt() |> 
+  tab_style(
+    style = cell_text(font = "monospace"),
+    locations = cells_body(columns = "ARPABET")
+  ) |> 
+  tab_style(
+    style = cell_text(style = "italic"),
+    locations = cells_row_groups()
+  )
+```
+
+```{r}
+#| label: tbl-longinglide
+#| tbl-cap: "Long in-gliding vowel notation"
+tribble(
+  ~backness, ~`Wells Lexical Set`, ~`Labov-Trager`, ~`IPA-like`, ~`ARPABET`, ~`FAVE plt_vclass`,
+  "front", "--", "æh", "eᵊ", "AE", "aeh",
+  "back", "Thought/Cloth", "oh", "ɔ", "AO", "oh",
+  "back", "Palm", "ah", "aː", "AA", "ah"
+) |> 
+  group_by(backness) |> 
+  gt() |> 
+  tab_style(
+    style = cell_text(font = "monospace"),
+    locations = cells_body(columns = "ARPABET")
+  ) |> 
+  tab_style(
+    style = cell_text(style = "italic"),
+    locations = cells_row_groups()
+  )
+```
+
+```{r}
+#| label: tbl-rcolor
+#| tbl-cap: "r-colored Vowel Notation"
+tribble(
+  ~backness, ~`Wells Lexical Set`, ~`Labov-Trager`, ~`IPA-like`, ~`ARPABET`, ~`FAVE plt_vclass`,
+  "front", "Near", "ihr", "ɪr", "IH", "ihr",
+  "front", "Square", "ehr", "ɛr", "EH", "ehr",
+  "back", "Cure", "uhr", "ʊr", "UH", "uhr",
+  "back", "Force", "ohr", "or", "AO", "ohr",
+  "back", "North", "ɔhr", "ɔr", "AO", "ohr",
+  "back", "Start", "ahr", "ɑr", "AA", "ahr",
+  "central", "Nurse", "*hr", "ɚ", "ER", "*hr"
+) |> 
+  group_by(backness) |> 
+  gt() |> 
+  tab_style(
+    style = cell_text(font = "monospace"),
+    locations = cells_body(columns = "ARPABET")
+  ) |> 
+  tab_style(
+    style = cell_text(style = "italic"),
+    locations = cells_row_groups()
+  )
+```
+
+## Contextual Labels
+
+```{r}
+#| label: tbl-vless
+#| tbl-cap: "Vowels appearing before a voiceless consonant"
+tribble(
+  ~backness, ~`Wells Lexical Set`, ~`Labov-Trager`, ~`IPA-like`, ~`ARPABET`, ~`FAVE plt_vclass`,
+  "front", "--", "aw0", "--", "AW", "aw0",
+  "back", "--", "ay0", "--", "AY", "ay0"
+) |> 
+  group_by(backness) |> 
+  gt() |> 
+  tab_style(
+    style = cell_text(font = "monospace"),
+    locations = cells_body(columns = "ARPABET")
+  ) |> 
+  tab_style(
+    style = cell_text(style = "italic"),
+    locations = cells_row_groups()
+  )
+```
+
+```{r}
+#| label: tbl-Tuw
+#| tbl-cap: "Vowels appearing after a coronal consonant"
+tribble(
+  ~backness, ~`Wells Lexical Set`, ~`Labov-Trager`, ~`IPA-like`, ~`ARPABET`, ~`FAVE plt_vclass`,
+  "back", "--", "Tuw", "--", "UW", "Tuw"
+) |> 
+  group_by(backness) |> 
+  gt() |> 
+  tab_style(
+    style = cell_text(font = "monospace"),
+    locations = cells_body(columns = "ARPABET")
+  ) |> 
+  tab_style(
+    style = cell_text(style = "italic"),
+    locations = cells_row_groups()
+  )
+```
+
+```{r}
+#| label: tbl-final
+#| tbl-cap: "Word final vowels"
+tribble(
+  ~backness, ~`Wells Lexical Set`, ~`Labov-Trager`, ~`IPA-like`, ~`ARPABET`, ~`FAVE plt_vclass`,
+  "front", "--", "iyF", "--", "IY", "iyF",
+  "front", "--", "eyF", "--", "EY", "eyF",
+  "back", "--", "owF", "--", "OW", "owF"
+) |> 
+  group_by(backness) |> 
+  gt() |> 
+  tab_style(
+    style = cell_text(font = "monospace"),
+    locations = cells_body(columns = "ARPABET")
+  ) |> 
+  tab_style(
+    style = cell_text(style = "italic"),
+    locations = cells_row_groups()
+  )
+```
+
+## Many-to-one
+
+```{r}
+tribble(
+  ~group, ~backness, ~`Wells Lexical Set`, ~`Labov-Trager`, ~`IPA-like`, ~`ARPABET`, ~`FAVE plt_vclass`,
+  "short", "front", "Kit", "i", "ɪ", "IH", "i",
+  "short", "front", "Dress", "e", "ɛ", "EH", "e",
+  "short", "front", "Trap", "æ", "æ", "AE", "ae",
+  "short", "back", "Foot", "u", "ʊ", "UH", "u",
+  "short", "back", "Strut", "ʌ", "ʌ", "AH1", "uh",
+  "short", "back", "Lot", "o", "ɑ", "AA", "o",
+  "short", "central", "commA", "--", "ə", "AH0", "@",
+  "Vy", "front", "Fleece", "iy", "iː", "IY", "iy",
+  "Vy", "front", "Face", "ey", "eɪ", "EY", "ey",
+  "Vy", "back", "Choice", "oy", "ɔɪ", "OY", "oy",
+  "Vy", "back", "Price", "ay", "ɑɪ", "AY", "ay",
+  "Vw", "front", "--", "iw", "juː", "UW", "--",
+  "Vw", "front", "Mouth", "aw", "aʊ", "AW", "aw",
+  "Vw", "back", "Goose", "uw", "uː", "UW", "uw",
+  "Vw", "back", "Goat", "ow", "oʊ", "OW", "ow",
+  "Vh", "front", "--", "æh", "eᵊ", "AE", "aeh",
+  "Vh", "back", "Thought/Cloth", "oh", "ɔ", "AO", "oh",
+  "Vh", "back", "Palm", "ah", "aː", "AA", "ah",
+  "Vhr", "front", "Near", "ihr", "ɪr", "IH", "ihr",
+  "Vhr", "front", "Square", "ehr", "ɛr", "EH", "ehr",
+  "Vhr", "back", "Cure", "uhr", "ʊr", "UH", "uhr",
+  "Vhr", "back", "Force", "ohr", "or", "AO", "ohr",
+  "Vhr", "back", "North", "ɔhr", "ɔr", "AO", "ohr",
+  "Vhr", "back", "Start", "ahr", "ɑr", "AA", "ahr",
+  "Vhr", "central", "Nurse", "*hr", "ɚ", "ER", "*hr",
+  "V0", "front", "--", "aw0", "--", "AW", "aw0",
+  "V0", "back", "--", "ay0", "--", "AY", "ay0",
+  "TV", "back", "--", "Tuw", "--", "UW", "Tuw",
+  "VF", "front", "--", "iyF", "--", "IY", "iyF",
+  "VF", "front", "--", "eyF", "--", "EY", "eyF",
+  "VF", "back", "--", "owF", "--", "OW", "owF"
+) -> whole_set
+```
+
+```{r}
+library(Rgraphviz)
+```
+
+```{r}
+rEG <- new("graphNEL", nodes=unique(c(whole_set$ARPABET, whole_set$`Labov-Trager`)), edgemode="directed")
+for(i in seq_along(whole_set$ARPABET)){
+  rEG <- addEdge(whole_set$ARPABET[i], whole_set$`Labov-Trager`[i], rEG, 1)
+}
+```
+
+```{r}
+#| label: fig-arpato
+#| fig-cap: "One-to-many relationships between ARPABET and Labov-Trager notation"
+plot(rEG)
+```
+
+::: {.content-visible when-format="html"}
+## Whole table
+
+```{r}
+whole_set |> 
+  rmarkdown::paged_table()
+```
+:::
