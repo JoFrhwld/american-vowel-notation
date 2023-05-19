@@ -4,6 +4,7 @@ author:
   - name: Josef Fruehwald
     url: https://jofrhwld.github.io/
 date: 2023-05-19
+license: "CC-BY 4.0"
 prefer-html: true
 format: 
   html: default
